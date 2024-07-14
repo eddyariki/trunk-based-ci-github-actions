@@ -35,7 +35,9 @@ jobs:
 
       - name: Update PR
         run: |
+          DEV_TAG_URL="https://github.com/${{ github.repository }}/releases/tag/${{ env.new_dev_tag }}"
+          STG_TAG_URL="https://github.com/${{ github.repository }}/releases/tag/${{ env.new_stg_tag }}"
           PR_NUMBER=$(echo "${{ github.event.ref }}" | sed 's/refs\/tags\///')
-          gh pr comment $PR_NUMBER --body "Latest tag created: ${{ env.new_dev_tag }}, ${{ env.new_stg_tag }}"
+          gh pr comment $PR_NUMBER --body "Latest tag created: [${{ env.new_dev_tag }}]($DEV_TAG_URL), [${{ env.new_stg_tag }}]($STG_TAG_URL)"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
