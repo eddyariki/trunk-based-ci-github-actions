@@ -56,6 +56,5 @@ new_stg_tag="v$major.$minor.$patch-stg-$(git rev-parse --short HEAD)"
 echo "New dev tag: $new_dev_tag"
 echo "New stg tag: $new_stg_tag"
 
-# Create the new tags
-git tag $new_dev_tag
-git tag $new_stg_tag
+echo "new_dev_tag=$new_dev_tag" >> $GITHUB_ENV
+echo "new_stg_tag=$new_stg_tag" >> $GITHUB_ENV
