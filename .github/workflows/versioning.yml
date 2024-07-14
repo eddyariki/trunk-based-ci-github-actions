@@ -37,3 +37,5 @@ jobs:
         run: |
           PR_NUMBER=$(echo "${{ github.event.ref }}" | sed 's/refs\/tags\///')
           gh pr comment $PR_NUMBER --body "Latest tag created: ${{ env.new_dev_tag }}, ${{ env.new_stg_tag }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
