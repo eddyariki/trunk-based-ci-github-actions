@@ -18,7 +18,7 @@ jobs:
       - name: Get commit message and create tags
         run: |
           # Run the versioning script
-          ./versioning.sh
+          .github/versioning.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_BASE_REF: ${{ github.event.pull_request.base.ref }}
