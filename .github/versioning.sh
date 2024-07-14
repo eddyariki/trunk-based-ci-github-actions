@@ -23,12 +23,14 @@ if [[ $commit_message == *"MAJOR"* ]]; then
   major=$((major + 1))
   minor=0
   patch=0
+  echo "major??"
 elif [[ $commit_message == *"MINOR"* ]]; then
   minor=$((minor + 1))
   patch=0
 elif [[ $commit_message == *"PATCH"* ]]; then
   patch=$((patch + 1))
 else
+  echo "defaulted??"
   patch=$((patch + 1))
 fi
 
