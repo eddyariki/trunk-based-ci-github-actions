@@ -1,0 +1,19 @@
+name: Tag PR Commits
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  tag_pr_commits:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Run versioning script
+        run: ./versioning.sh
