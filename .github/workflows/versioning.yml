@@ -16,4 +16,4 @@ jobs:
         run: git fetch --tags
 
       - name: Run versioning script
-        run: ./versioning.sh
+        run: .github/versioning.sh
