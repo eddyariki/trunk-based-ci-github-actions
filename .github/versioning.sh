@@ -3,6 +3,11 @@
 # Fetch the latest tag from the main branch
 latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
 
+# If no tags exist, set the default tag to v0.1.0
+if [ -z "$latest_tag" ]; then
+  latest_tag="v0.1.0"
+fi
+
 # Extract major, minor, patch version numbers
 IFS='.' read -r -a version_parts <<< "${latest_tag//v/}"
 
