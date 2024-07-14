@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Fetch the latest tag from the main branch
-latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+# Fetch all tags and filter out those containing -dev or -stg
+latest_tag=$(git tag -l | grep -E -v "-dev|-stg" | sort -V | tail -n 1)
 
 # If no tags exist, set the default tag to v0.1.0
 if [ -z "$latest_tag" ]; then
@@ -32,12 +32,14 @@ else
   patch=$((patch + 1))
 fi
 
-# Construct the new tag
-new_tag="v$major.$minor.$patch-dev-$(git rev-parse --short HEAD)"
+# Construct the new tags
+new_dev_tag="v$major.$minor.$patch-dev-$(git rev-parse --short HEAD)"
+new_stg_tag="v$major.$minor.$patch-stg-$(git rev-parse --short HEAD)"
 
-# Output the new tag
-echo "New tag: $new_tag"
+# Output the new tags
+echo "New dev tag: $new_dev_tag"
+echo "New stg tag: $new_stg_tag"
 
-# Create the new tag
-git tag $new_tag
-git push origin $new_tag
+# Create the new tags
+git tag $new_dev_tag
+git tag $new_stg_tag
