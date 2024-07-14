@@ -15,8 +15,8 @@ major=${version_parts[0]}
 minor=${version_parts[1]}
 patch=${version_parts[2]}
 
-# Get the commit message of the latest commit
-commit_message=$(git log -1 --pretty=%B)
+# Get the commit message of the latest commit in the PR branch
+commit_message=$(git log -1 --pretty=%B HEAD)
 
 # Debugging: print the commit message
 echo "Commit message: $commit_message"
