@@ -30,6 +30,7 @@ elif [[ $commit_message == *"MINOR"* ]]; then
 elif [[ $commit_message == *"PATCH"* ]]; then
   patch=$((patch + 1))
 else
+  echo "defaulted??"
   patch=$((patch + 1))
 fi
 
