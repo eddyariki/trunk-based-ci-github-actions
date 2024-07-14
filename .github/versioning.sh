@@ -18,18 +18,25 @@ patch=${version_parts[2]}
 # Get the commit message of the latest commit
 commit_message=$(git log -1 --pretty=%B)
 
+# Debugging: print the commit message
+echo "Commit message: $commit_message"
+
 # Determine the new version based on the commit message
 if [[ $commit_message == *"MAJOR"* ]]; then
   major=$((major + 1))
   minor=0
   patch=0
+  echo "Incrementing major version"
 elif [[ $commit_message == *"MINOR"* ]]; then
   minor=$((minor + 1))
   patch=0
+  echo "Incrementing minor version"
 elif [[ $commit_message == *"PATCH"* ]]; then
   patch=$((patch + 1))
+  echo "Incrementing patch version"
 else
   patch=$((patch + 1))
+  echo "Defaulting to patch increment"
 fi
 
 # Construct the new tags
