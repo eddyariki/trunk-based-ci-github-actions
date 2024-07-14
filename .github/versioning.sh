@@ -15,8 +15,17 @@ major=${version_parts[0]}
 minor=${version_parts[1]}
 patch=${version_parts[2]}
 
+# Fetch the base branch name from the GitHub environment variables
+base_branch=$GITHUB_BASE_REF
+
+# Fetch the head branch name from the GitHub environment variables
+head_branch=$GITHUB_HEAD_REF
+
+# Checkout to the head branch to get the latest commit message
+git checkout $head_branch
+
 # Get the commit message of the latest commit in the PR branch
-commit_message=$(git log -1 --pretty=%B HEAD)
+commit_message=$(git log -1 --pretty=%B)
 
 # Debugging: print the commit message
 echo "Commit message: $commit_message"

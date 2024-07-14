@@ -15,9 +15,15 @@ jobs:
       - name: Fetch all tags
         run: git fetch --tags
 
-      - name: Run versioning script
-        run: .github/versioning.sh
-        
+      - name: Get commit message and create tags
+        run: |
+          # Run the versioning script
+          ./versioning.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_BASE_REF: ${{ github.event.pull_request.base.ref }}
+          GITHUB_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+
       - name: Push tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
