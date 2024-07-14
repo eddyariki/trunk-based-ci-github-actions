@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Fetch all tags and filter out those containing -dev or -stg
-latest_tag=$(git tag -l | grep -E -v "-dev|-stg" | sort -V | tail -n 1)
+latest_tag=$(git tag -l | grep -vE "(-dev|-stg)" | sort -V | tail -n 1)
 
 # If no tags exist, set the default tag to v0.1.0
 if [ -z "$latest_tag" ]; then
