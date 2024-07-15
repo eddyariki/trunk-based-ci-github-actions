@@ -34,5 +34,6 @@ fi
 # Construct the new tag
 new_tag="v$major.$minor.$patch"
 
-# Output the new tag
+echo "New main tag:  $new_tag"
+
 echo "new_tag=$new_tag" >> $GITHUB_ENV
